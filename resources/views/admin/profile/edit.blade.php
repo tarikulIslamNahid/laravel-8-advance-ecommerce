@@ -42,7 +42,7 @@
                 </div>
 
             </div>
-          <button type="submit" class="btn btn-primary mt-3">Sign in</button>
+          <button type="submit" class="btn btn-primary mt-3">Profile Update</button>
         </form>
 
 <!--  END CONTENT AREA  -->

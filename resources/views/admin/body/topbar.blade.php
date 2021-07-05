@@ -89,21 +89,11 @@
                 <a href="javascript:void(0);" class="nav-link dropdown-toggle user" id="userProfileDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
 
           @php
-
-//    if(empty(Auth::user())){
-
-
-//     $admin=Admin::find(1);
-//        $name=$admin->name;
-// }    else{
-//     $name=Auth::user()->name;
-
-// }
-
-
-$img="https://ui-avatars.com/api/?name=Admin&color=7F9CF5&background=EBF4FF";
+$admin=DB::table('admins')->first();
+ 
+$img="https://ui-avatars.com/api/?name=".$admin->name."&color=7F9CF5&background=EBF4FF";
                   @endphp
-                    <img src="{{url($img)}}" alt="avatar">
+                    <img src="{{(!empty($admin->profile_photo_path)) ? url('storage/profile-photos/'.$admin->profile_photo_path) : $img}}" alt="avatar">
                 </a>
                 <div class="dropdown-menu position-absolute" aria-labelledby="userProfileDropdown">
                     <div class="">
