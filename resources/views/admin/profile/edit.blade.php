@@ -12,7 +12,16 @@
 @endsection
 @section('content')
 <!--  BEGIN CONTENT AREA  -->
-<h4 class='py-3'>Profile Edit</h4>
+
+<div class="statbox widget box box-shadow my-5">
+<div class="widget-header">
+    <div class="row">
+        <div class="col-xl-12 col-md-12 col-sm-12 col-12">
+            <h4>Update Profile</h4>
+        </div>
+    </div>
+</div>
+<hr>
         <form action="{{route('profile.update')}}" method="post" enctype='multipart/form-data' >
             @csrf
             <div class="form-row mb-4">
@@ -44,6 +53,57 @@
             </div>
           <button type="submit" class="btn btn-primary mt-3">Profile Update</button>
         </form>
+</div>
+
+
+{{-- password update  --}}
+
+<div class="statbox widget box box-shadow my-5">
+    <div class="widget-header">
+        <div class="row">
+            <div class="col-xl-12 col-md-12 col-sm-12 col-12">
+                <h4>Update Profile Password</h4>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <div class="widget-content widget-content-area">
+
+<form class="needs-validation" novalidate action="{{route('profile.passupdate')}}" method="post">
+@csrf
+<div class="form-row mb-4">
+
+<div class="col-md-6">
+<label for="validationCustom03">Current Password</label>
+<input type="password" class="form-control" id="validationCustom03" name="oldpass" >
+
+</div>
+</div>
+<div class="form-row">
+<div class="col-md-6">
+
+    <label for="phone">New Password</label>
+    <input type="password" class="form-control"  name="newpass" >
+
+
+</div>
+<div class="col-md-6">
+<label for="address">Confirm password</label>
+<input type="password" class="form-control" name="password_confirmation">
+
+</div>
+</div>
+
+
+
+<button class="btn btn-primary mt-3" type="submit">Reset Password</button>
+</form>
+
+
+</div>
+</div>
+
+{{-- password update  --}}
 
 <!--  END CONTENT AREA  -->
 @endsection

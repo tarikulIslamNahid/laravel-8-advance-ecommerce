@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Admin;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class ProfileController extends Controller
 {
@@ -44,4 +45,26 @@ class ProfileController extends Controller
         return redirect()->route('profile.view')->with($dnotification);
 
     }
+
+
+
+    public function passupdate(Request $request){
+        $user=Admin::find(1);
+        $dbPass =$user->password;
+        if(Hash::check($request->oldpass, $dbPass)){
+
+            $user->password=Hash::make($request->newpass);
+            $user->save();
+            Auth::logout();
+            return redirect()->route('admin.logout');
+        }else{
+            $notification=array(
+                'message'=> 'Password reset Failed',
+                'alert-type'=> 'error',
+            );
+            return redirect()->back()->with($notification);
+        }
+
+    }
+
 }

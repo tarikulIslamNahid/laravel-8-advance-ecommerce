@@ -7,7 +7,7 @@ use App\Http\Controllers\Backend\ProfileController;
 Route::get('/', function () {
     return view('frontend.home.index');
 });
-
+Route::get('admin/logout', [AdminController::class, 'destroy'])->name('admin.logout');
 Route::group(['prefix'=> 'admin', 'middleware'=>['admin:admin']], function(){
 	Route::get('/login', [AdminController::class, 'loginForm']);
 	Route::post('/login',[AdminController::class, 'store'])->name('admin.login');
