@@ -32,21 +32,30 @@
 		<div class="form-group">
 		    <label class="info-title" for="exampleInputEmail1">Email Address <span>*</span></label>
 		    <input type="email" class="form-control unicase-form-control text-input" id="email" name="email" :value="old('email')" required>
-
+@error('email')
+    <span class="invalid-feedback" role="alert">
+        <strong> {{$message}}</strong>
+    </span>
+@enderror
 		</div>
 	  	<div class="form-group">
 		    <label class="info-title" for="password">Password <span>*</span></label>
 		    <input type="password" class="form-control unicase-form-control text-input" name="password" required autocomplete="current-password" id="password" >
+            @error('password')
+    <span class="invalid-feedback" role="alert">
+        <strong> {{$message}}</strong>
+    </span>
+@enderror
 		</div>
 		<div class="radio outer-xs">
 		  	<label>
 		    	<input type="radio"  id="remember_me" name="remember" value="option2">Remember me!
 		  	</label>
-              @if (Route::has('password.request'))
-              <a class="forgot-password pull-right" href="{{ route('password.request') }}">
+
+              <a class="forgot-password pull-right" href="{{ route('resetpass') }}">
                   {{ __('Forgot your password?') }}
               </a>
-          @endif
+
 		</div>
 	  	<button type="submit" class="btn-upper btn btn-primary checkout-page-button">Login</button>
 	</form>
@@ -64,22 +73,48 @@
 		<div class="form-group">
 	    	<label class="info-title" for="email">Email Address <span>*</span></label>
 	    	<input id="email" type="email" name="email" :value="old('email')" required  class="form-control unicase-form-control text-input" >
+            @error('email')
+            <span class="invalid-feedback" role="alert">
+                <strong> {{$message}}</strong>
+            </span>
+        @enderror
 	  	</div>
         <div class="form-group">
 		    <label class="info-title" for="name">Name <span>*</span></label>
 		    <input id="name"  type="text" name="name" :value="old('name')" class="form-control unicase-form-control text-input"   >
-		</div>
+
+            @error('name')
+            <span class="invalid-feedback" role="alert">
+                <strong> {{$message}}</strong>
+            </span>
+        @enderror
+        </div>
         <div class="form-group">
 		    <label class="info-title" for="phone">Phone Number <span>*</span></label>
 		    <input  type="text" name="phone" :value="old('phone')"  class="form-control unicase-form-control text-input" id="phone" >
+            @error('phone')
+            <span class="invalid-feedback" role="alert">
+                <strong> {{$message}}</strong>
+            </span>
+        @enderror
 		</div>
         <div class="form-group">
 		    <label class="info-title" for="password">Password <span>*</span></label>
 		    <input id="password" type="password" name="password" required autocomplete="new-password" class="form-control unicase-form-control text-input" >
+            @error('password')
+            <span class="invalid-feedback" role="alert">
+                <strong> {{$message}}</strong>
+            </span>
+        @enderror
 		</div>
          <div class="form-group">
 		    <label class="info-title" for="password_confirmation">Confirm Password <span>*</span></label>
 		    <input id="password_confirmation" type="password" name="password_confirmation" required  class="form-control unicase-form-control text-input" id="exampleInputEmail1" >
+            @error('password_confirmation')
+            <span class="invalid-feedback" role="alert">
+                <strong> {{$message}}</strong>
+            </span>
+        @enderror
 		</div>
 	  	<button type="submit" class="btn-upper btn btn-primary checkout-page-button">Sign Up</button>
 	</form>

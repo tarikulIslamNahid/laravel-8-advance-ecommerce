@@ -1,36 +1,69 @@
-<x-guest-layout>
-    <x-jet-authentication-card>
-        <x-slot name="logo">
-            <x-jet-authentication-card-logo />
-        </x-slot>
+@extends('frontend.body.app')
+@section('title','Ecommerce Reset Password Page')
+@section('content')
 
-        <x-jet-validation-errors class="mb-4" />
 
-        <form method="POST" action="{{ route('password.update') }}">
+<div class="breadcrumb">
+	<div class="container">
+		<div class="breadcrumb-inner">
+			<ul class="list-inline list-unstyled">
+				<li><a href="{{route('home')}}">Home</a></li>
+				<li class='active'>Reset Password</li>
+			</ul>
+		</div><!-- /.breadcrumb-inner -->
+	</div><!-- /.container -->
+</div><!-- /.breadcrumb -->
+
+<div class="body-content outer-sm ">
+	<div class="container">
+		<div class="">
+<div class="sign-in-page col-md-12 my-4 col-sm-12 sign-in">
+
+	<p class="">Password Reset</p>
+
+        <form class="register-form outer-top-xs"   method="POST" action="{{ route('password.update')}}">
             @csrf
 
             <input type="hidden" name="token" value="{{ $request->route('token') }}">
 
-            <div class="block">
-                <x-jet-label for="email" value="{{ __('Email') }}" />
-                <x-jet-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email', $request->email)" required autofocus />
+            <div class="form-group">
+                <label class="info-title" for="email">Email <span>*</span></label>
+                <input id="email" type="email" name="email" :value="old('email', $request->email)" required autofocus  class="form-control unicase-form-control text-input" >
+                @error('email')
+                <span class="invalid-feedback" role="alert">
+                    <strong> {{$message}}</strong>
+                </span>
+            @enderror
             </div>
+            <div class="form-group">
+                <label class="info-title" for="password">Password <span>*</span></label>
+                <input id="password" type="password" name="password" required autocomplete="new-password" class="form-control unicase-form-control text-input" >
+                @error('password')
+                <span class="invalid-feedback" role="alert">
+                    <strong> {{$message}}</strong>
+                </span>
+            @enderror
+            </div>
+             <div class="form-group">
+                <label class="info-title" for="password_confirmation">Confirm Password <span>*</span></label>
+                <input id="password_confirmation" type="password" name="password_confirmation" required  class="form-control unicase-form-control text-input" id="exampleInputEmail1" >
+                @error('password_confirmation')
+                <span class="invalid-feedback" role="alert">
+                    <strong> {{$message}}</strong>
+                </span>
+            @enderror
+            </div>
+              <button type="submit" class="btn-upper btn btn-primary checkout-page-button">Reset Password</button>
 
-            <div class="mt-4">
-                <x-jet-label for="password" value="{{ __('Password') }}" />
-                <x-jet-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="new-password" />
-            </div>
+	</form>
+</div>
+<!-- Sign-in -->
 
-            <div class="mt-4">
-                <x-jet-label for="password_confirmation" value="{{ __('Confirm Password') }}" />
-                <x-jet-input id="password_confirmation" class="block mt-1 w-full" type="password" name="password_confirmation" required autocomplete="new-password" />
-            </div>
+<!-- create a new account -->			</div><!-- /.row -->
 
-            <div class="flex items-center justify-end mt-4">
-                <x-jet-button>
-                    {{ __('Reset Password') }}
-                </x-jet-button>
-            </div>
-        </form>
-    </x-jet-authentication-card>
-</x-guest-layout>
+<!-- ============================================== BRANDS CAROUSEL : END ============================================== -->	</div><!-- /.container -->
+</div><!-- /.body-content -->
+<!-- ============================================================= FOOTER ============================================================= -->
+
+
+@endsection

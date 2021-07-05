@@ -10,7 +10,14 @@
               <li><a href="#"><i class="icon fa fa-heart"></i>Wishlist</a></li>
               <li><a href="#"><i class="icon fa fa-shopping-cart"></i>My Cart</a></li>
               <li><a href="#"><i class="icon fa fa-check"></i>Checkout</a></li>
-              <li><a href="#"><i class="icon fa fa-lock"></i>Login</a></li>
+              <li>
+                @auth
+                <a href="{{ url('/dashboard') }}" class="text-sm text-gray-700 underline">Dashboard</a>
+            @else
+              
+                <a href="{{route('login')}}"><i class="icon fa fa-lock"></i>Login OR Register</a>
+            @endauth
+                </li>
             </ul>
           </div>
           <!-- /.cnt-account -->

@@ -11,6 +11,8 @@ Route::get('/register',function(){
 })->name('register');
 
 Route::get('/login',[IndexController::class,'loginpage'])->name('login');
+Route::get('/logout',[IndexController::class,'logout'])->name('logout');
+Route::get('/forgot-password',[IndexController::class,'resetpass'])->name('resetpass');
 
 Route::get('admin/logout', [AdminController::class, 'destroy'])->name('admin.logout');
 Route::group(['prefix'=> 'admin', 'middleware'=>['admin:admin']], function(){
