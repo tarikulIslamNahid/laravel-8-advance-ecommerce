@@ -37,7 +37,11 @@ class ProfileController extends Controller
         }
         $user->update();
 
-        return redirect()->route('profile.view')->with('update','profile update success');
+        $dnotification=array(
+            'message'=> 'Admin Profile Updated Sucessfully',
+            'alert-type'=> 'success',
+        );
+        return redirect()->route('profile.view')->with($dnotification);
 
     }
 }
