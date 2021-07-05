@@ -3,17 +3,20 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Backend\ProfileController;
+use App\Http\Controllers\Frontend\IndexController;
 
-Route::get('/', function () {
-    return view('frontend.home.index');
-});
+Route::get('/',[IndexController::class,'index'])->name('home');
+Route::get('/register',function(){
+    return redirect()->route('login');
+})->name('register');
+
+Route::get('/login',[IndexController::class,'loginpage'])->name('login');
+
 Route::get('admin/logout', [AdminController::class, 'destroy'])->name('admin.logout');
 Route::group(['prefix'=> 'admin', 'middleware'=>['admin:admin']], function(){
 	Route::get('/login', [AdminController::class, 'loginForm']);
 	Route::post('/login',[AdminController::class, 'store'])->name('admin.login');
     Route::redirect('/', '/admin/login');
-
-
 
 });
 Route::prefix('admin/profile')->group(function (){

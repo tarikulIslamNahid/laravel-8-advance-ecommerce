@@ -1,5 +1,5 @@
 @extends('frontend.body.app')
-
+@section('title','Ecommerce home Page')
 @section('content')
 <div class="body-content outer-top-xs" id="top-banner-and-menu">
     <div class="container">
