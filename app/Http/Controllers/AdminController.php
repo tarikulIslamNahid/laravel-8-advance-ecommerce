@@ -35,11 +35,11 @@ class AdminController extends Controller
     public function __construct(StatefulGuard $guard)
     {
         $this->guard = $guard;
-         
+
     }
 
     public function loginForm(){
-    	return view('auth.login', ['guard' => 'admin']);
+    	return view('admin.auth.login', ['guard' => 'admin']);
     }
 
     /**
@@ -109,6 +109,7 @@ class AdminController extends Controller
         $request->session()->regenerateToken();
 
         return app(LogoutResponse::class);
+
     }
 }
 

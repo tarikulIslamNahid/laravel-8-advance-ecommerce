@@ -3,8 +3,8 @@
 
         <ul class="navbar-item theme-brand flex-row  text-center">
             <li class="nav-item theme-logo">
-                <a href="index-2.html">
-                    <img src="assets/img/logo.svg" class="navbar-logo" alt="logo">
+                <a href="{{route('admin.dashboard')}}">
+                    <img src="{{asset('backend')}}/assets/img/logo.svg" class="navbar-logo" alt="logo">
                 </a>
             </li>
             <li class="nav-item theme-text">
@@ -87,12 +87,28 @@
 
             <li class="nav-item dropdown user-profile-dropdown">
                 <a href="javascript:void(0);" class="nav-link dropdown-toggle user" id="userProfileDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                    <img src="assets/img/profile-16.jpg" alt="avatar">
+
+          @php
+
+//    if(empty(Auth::user())){
+
+
+//     $admin=Admin::find(1);
+//        $name=$admin->name;
+// }    else{
+//     $name=Auth::user()->name;
+
+// }
+
+
+$img="https://ui-avatars.com/api/?name=Admin&color=7F9CF5&background=EBF4FF";
+                  @endphp
+                    <img src="{{url($img)}}" alt="avatar">
                 </a>
                 <div class="dropdown-menu position-absolute" aria-labelledby="userProfileDropdown">
                     <div class="">
                         <div class="dropdown-item">
-                            <a class="" href="user_profile.html"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg> Profile</a>
+                            <a class="" href="{{route('profile.view')}}"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg> Profile</a>
                         </div>
 
                         <div class="dropdown-item">
@@ -103,9 +119,6 @@
                                 <a class="" onclick="event.preventDefault();
                                 this.closest('form').submit();" href="{{ route('logout') }}"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-log-out"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg> Sign Out</a>
                             </form>
-
-
-
 
                         </div>
                     </div>
