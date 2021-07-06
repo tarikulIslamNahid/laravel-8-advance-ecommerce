@@ -34,6 +34,9 @@ Route::prefix('admin/brand')->group(function (){
     Route::get('/', [BrandController::class, 'index'])->name('brand.all');
     Route::get('/create', [BrandController::class, 'create'])->name('brand.create');
     Route::post('/store', [BrandController::class, 'store'])->name('brand.store');
+    Route::get('edit/{id}', [BrandController::class, 'edit'])->name('brand.edit');
+    Route::post('/update/{id}', [BrandController::class, 'update'])->name('brand.update');
+
 });
     // Admin profile group routes
 

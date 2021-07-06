@@ -44,7 +44,7 @@ $brands= Brand::latest()->get();
 
         if($request->file('brand_image')){
             $file=$request->file('brand_image');
-            $fileName=date('YmdHi').'.'.$file->getClientOriginalExtension();
+            $fileName=date('YmdHi').uniqid().'.'.$file->getClientOriginalExtension();
             Image::make($file)->resize(300,300)->save('storage/brand/'.$fileName);
             $brand['brand_image']=$fileName;
             // if (file_exists(public_path('storage/profile-photos/'.$brand->profile_photo_path))) {
@@ -61,6 +61,43 @@ $brands= Brand::latest()->get();
         );
         return redirect()->route('brand.all')->with($dnotification);
 
+
+    }
+
+
+    // show brand edit page
+    public function edit($id){
+        $brands= Brand::where('brand_slug_en',$id)->first();
+        return view('admin.brand.edit',compact('brands'));
+    }
+    public function update(Request $request,$id){
+        $brand=Brand::where('brand_slug_en',$id)->first();
+
+        if($request->file('brand_image')){
+           $oldImg= $brand->brand_image;
+           if (file_exists(public_path('storage/brand/'.$oldImg))) {
+            unlink(public_path('storage/brand/'.$oldImg));
+            }
+            $file=$request->file('brand_image');
+            $fileName=date('YmdHi').uniqid().'.'.$file->getClientOriginalExtension();
+            Image::make($file)->resize(300,300)->save('storage/brand/'.$fileName);
+            $brand['brand_image']=$fileName;
+
+
+        }
+        $brand->brand_name_en=$request->brand_name_en;
+        $brand->brand_slug_en= Str::slug($request->brand_name_en) ;
+        $brand->brand_name_bn= $request->brand_name_bn;
+        $brand->brand_slug_bn= strtolower(str_replace(' ', '-',$request->brand_name_bn));
+
+
+        $brand->update();
+
+        $dnotification=array(
+            'message'=> 'Brand Updated Sucessfully',
+            'alert-type'=> 'success',
+        );
+        return redirect()->route('brand.all')->with($dnotification);
 
     }
 }
