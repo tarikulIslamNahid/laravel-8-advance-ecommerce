@@ -6,6 +6,9 @@ use App\Http\Controllers\Backend\ProfileController;
 use App\Http\Controllers\Frontend\IndexController;
 
 Route::get('/',[IndexController::class,'index'])->name('home');
+Route::get('user/profile',[IndexController::class,'userprofile'])->name('user.profile');
+Route::post('user/profile/update',[IndexController::class,'userprofileupdate'])->name('user.profile.update');
+Route::post('user/profile/update/password',[IndexController::class,'userprofileupdatepass'])->name('user.profile.updatepass');
 Route::get('/register',function(){
     return redirect()->route('login');
 })->name('register');
@@ -38,5 +41,5 @@ Route::middleware(['auth:sanctum,admin', 'verified'])->get('/admin/dashboard', f
 
 
 Route::middleware(['auth:sanctum,web', 'verified'])->get('/dashboard', function () {
-    return view('dashboard');
+    return view('frontend.panel.dashboard');
 })->name('dashboard');

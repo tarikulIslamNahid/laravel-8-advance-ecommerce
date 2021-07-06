@@ -13,8 +13,10 @@
               <li>
                 @auth
                 <a href="{{ url('/dashboard') }}" class="text-sm text-gray-700 underline">Dashboard</a>
+                <a href="{{ url('/logout') }}" class="text-sm m-l-15 text-gray-700 underline">Logout</a>
+
             @else
-              
+
                 <a href="{{route('login')}}"><i class="icon fa fa-lock"></i>Login OR Register</a>
             @endauth
                 </li>
@@ -308,19 +310,7 @@
                               <ul class="links">
                                 <li><a href="home.html">Home</a></li>
                                 <li><a href="category.html">Category</a></li>
-                                <li><a href="detail.html">Detail</a></li>
-                                <li><a href="shopping-cart.html">Shopping Cart Summary</a></li>
-                                <li><a href="checkout.html">Checkout</a></li>
-                                <li><a href="blog.html">Blog</a></li>
-                                <li><a href="blog-details.html">Blog Detail</a></li>
-                                <li><a href="contact.html">Contact</a></li>
-                                <li><a href="sign-in.html">Sign In</a></li>
-                                <li><a href="my-wishlist.html">Wishlist</a></li>
-                                <li><a href="terms-conditions.html">Terms and Condition</a></li>
-                                <li><a href="track-orders.html">Track Orders</a></li>
-                                <li><a href="product-comparison.html">Product-Comparison</a></li>
-                                <li><a href="faq.html">FAQ</a></li>
-                                <li><a href="404.html">404</a></li>
+
                               </ul>
                             </div>
                           </div>
