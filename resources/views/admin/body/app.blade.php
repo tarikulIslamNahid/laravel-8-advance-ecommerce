@@ -23,6 +23,12 @@
     <link rel="stylesheet" type="text/css" href="{{asset('backend')}}/plugins/table/datatable/datatables.css">
     <link rel="stylesheet" type="text/css" href="{{asset('backend')}}/plugins/table/datatable/dt-global_style.css">
     <link rel="stylesheet" type="text/css" href="{{asset('backend')}}/plugins/table/datatable/custom_dt_custom.css">
+
+    {{-- sweet alert --}}
+    {{-- <link href="{{asset('backend')}}/plugins/sweetalerts/sweetalert2.min.css" rel="stylesheet" type="text/css" /> --}}
+    <link href="{{asset('backend')}}/plugins/sweetalerts/sweetalert.css" rel="stylesheet" type="text/css" />
+    <link href="{{asset('backend')}}/assets/css/components/custom-sweetalert.css" rel="stylesheet" type="text/css" />
+    {{-- sweet alert --}}
 @yield('style')
 <style>
     .toast-success{
@@ -84,9 +90,36 @@
     <script src="{{asset('backend')}}/assets/js/dashboard/dash_1.js"></script>
     <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
+{{-- sweetalert --}}
+<script src="{{asset('backend')}}/plugins/sweetalerts/sweetalert2.min.js"></script>
+<script src="{{asset('backend')}}/plugins/sweetalerts/custom-sweetalert.js"></script>
+{{-- sweetalert --}}
     <!-- BEGIN PAGE LEVEL SCRIPTS -->
     <script src="{{asset('backend')}}/plugins/table/datatable/datatables.js"></script>
+    <script>
+
+$(document).on('click','#delete', function (e) {
+    e.preventDefault();
+    let link = $(this).attr('href');
+  swal({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Delete',
+      padding: '2em'
+    }).then(function(result) {
+      if (result.value) {
+          window.location.href= link;
+        swal(
+          'Deleted!',
+          'Your file has been deleted.',
+          'success'
+        )
+      }
+    })
+})
+    </script>
     <script>
           toastr.options.timeOut = 1200;
              toastr.options.progressBar = true;

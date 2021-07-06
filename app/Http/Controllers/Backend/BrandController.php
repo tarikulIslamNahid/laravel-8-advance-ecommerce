@@ -100,4 +100,19 @@ $brands= Brand::latest()->get();
         return redirect()->route('brand.all')->with($dnotification);
 
     }
+    public function delete($id){
+        $brand=Brand::findOrFail($id);
+      $image=  $brand->brand_image;
+        if (file_exists(public_path('storage/brand/'.$image))) {
+            unlink(public_path('storage/brand/'.$image));
+            }
+            $brand->delete();
+
+            $dnotification=array(
+                'message'=> 'Brand Delete Sucessfully',
+                'alert-type'=> 'error',
+            );
+            return redirect()->back()->with($dnotification);
+
+    }
 }
