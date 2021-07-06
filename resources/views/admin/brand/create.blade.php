@@ -21,11 +21,17 @@
                 <div class="form-row mb-4">
                     <div class="col">
                         <label for="exampleFormControlInput1">Brand Name English</label>
-                      <input type="text" class="form-control" name="brand_name_en" placeholder="Brand Name English">
+                      <input type="text" class="form-control" name="brand_name_en" placeholder=" ">
+                      @error('brand_name_en')
+                          <span class="text-danger"> {{$message}} </span>
+                      @enderror
                     </div>
                     <div class="col">
                         <label for="exampleFormControlInput1">Brand Name Bangla</label>
-                      <input type="text" class="form-control" name="brand_name_bn" placeholder="Brand Name Bangla">
+                      <input type="text" class="form-control" name="brand_name_bn" placeholder=" ">
+                      @error('brand_name_bn')
+                      <span class="text-danger"> {{$message}} </span>
+                  @enderror
                     </div>
                 </div>
 
@@ -33,6 +39,9 @@
                     <div class="col">
                         <label for="exampleFormControlInput1">Brand Image</label>
                       <input type="file" class="form-control" id='image' name="brand_image" >
+                      @error('brand_image')
+                      <span class="text-danger"> {{$message}} </span>
+                  @enderror
                     </div>
                     <div class="col">
                         <img class='mt-4 rounded-circle' id='showImg' src="https://ui-avatars.com/api/?name=Brand Name&color=7F9CF5&background=EBF4FF" width="50px" height="50px" alt="">
