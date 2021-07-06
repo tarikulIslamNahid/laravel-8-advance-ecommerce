@@ -54,18 +54,32 @@ class IndexController extends Controller
    }
 
 public function userprofileupdatepass(Request $request){
+
+    $validateData=$request->validate([
+        'oldpass'=> 'required',
+        'newpass' => 'required',
+    ]);
+
     $user=User::findOrFail(Auth::user()->id);
     $dbPass =$user->password;
     if(Hash::check($request->oldpass, $dbPass)){
+if($request->newpass ==$request->password_confirmation){
+    $user->password=Hash::make($request->newpass);
+    $user->save();
+    Auth::logout();
+    $notification=array(
+        'message'=> 'Password reset Successfully',
+        'alert-type'=> 'success',
+    );
+    return redirect()->route('logout')->with($notification);
 
-        $user->password=Hash::make($request->newpass);
-        $user->save();
-        Auth::logout();
-        $notification=array(
-            'message'=> 'Password reset Successfully',
-            'alert-type'=> 'success',
-        );
-        return redirect()->route('logout')->with($notification);
+}else{
+    $notification=array(
+        'message'=> 'The password confirmation does not match',
+        'alert-type'=> 'error',
+    );
+    return redirect()->back()->with($notification);
+}
 
     }else{
         $notification=array(

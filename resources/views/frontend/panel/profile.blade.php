@@ -71,28 +71,39 @@
                 <h5 class="mb-0 h6">Password Reset</h5>
             </div>
             <div class="card-body">
-                <form action="{{route('user.profile.updatepass')}}" method="POST"
-                    enctype="multipart/form-data">
+                <form action="{{route('user.profile.updatepass')}}" method="POST" >
                     @csrf
                     <div class="form-group row">
                         <label class="col-md-2 col-form-label">Current password</label>
                         <div class="col-md-10">
                             <input type="password" class="form-control" id="validationCustom03" name="oldpass" >
-
+                            @error('oldpass')
+                            <span class="invalid-feedback" role="alert">
+                                <strong> {{$message}}</strong>
+                            </span>
+                        @enderror
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-md-2 col-form-label">New Password</label>
                         <div class="col-md-10">
                             <input type="password" class="form-control"  name="newpass" >
-
+                            @error('newpass')
+                            <span class="invalid-feedback" role="alert">
+                                <strong> {{$message}}</strong>
+                            </span>
+                        @enderror
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-md-2 col-form-label">Confirm Password</label>
                         <div class="col-md-10">
                             <input type="password" class="form-control" name="password_confirmation">
-
+                            @error('password_confirmation')
+                            <span class="invalid-feedback alert alert-dange" role="alert">
+                                <strong> {{$message}}</strong>
+                            </span>
+                        @enderror
                         </div>
                     </div>
 
