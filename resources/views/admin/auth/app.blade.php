@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<!-- Mirrored from designreset.com/cork/ltr/demo3/auth_login_boxed.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 10 Jun 2021 12:50:48 GMT -->
+ 
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">

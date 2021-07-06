@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Backend\ProfileController;
+use App\Http\Controllers\Backend\BrandController;
 use App\Http\Controllers\Frontend\IndexController;
 
 Route::get('/',[IndexController::class,'index'])->name('home');
@@ -18,12 +19,24 @@ Route::get('/logout',[IndexController::class,'logout'])->name('logout');
 Route::get('/forgot-password',[IndexController::class,'resetpass'])->name('resetpass');
 
 Route::get('admin/logout', [AdminController::class, 'destroy'])->name('admin.logout');
+
 Route::group(['prefix'=> 'admin', 'middleware'=>['admin:admin']], function(){
 	Route::get('/login', [AdminController::class, 'loginForm']);
 	Route::post('/login',[AdminController::class, 'store'])->name('admin.login');
     Route::redirect('/', '/admin/login');
 
+
+
 });
+    // Admin brand group routes
+
+Route::prefix('admin/brand')->group(function (){
+    Route::get('/', [BrandController::class, 'index'])->name('brand.all');
+    Route::get('/create', [BrandController::class, 'create'])->name('brand.create');
+    Route::post('/store', [BrandController::class, 'store'])->name('brand.store');
+});
+    // Admin profile group routes
+
 Route::prefix('admin/profile')->group(function (){
     Route::get('/',[ProfileController::class,'index'])->name('profile.view');
 
