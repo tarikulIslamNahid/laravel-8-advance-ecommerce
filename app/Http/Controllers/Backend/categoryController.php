@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use App\Models\categories;
 use Illuminate\Support\Str;
-use Intervention\Image\ImageManagerStatic as Image;
 use Illuminate\Http\Request;
 
 class categoryController extends Controller
@@ -60,6 +59,7 @@ class categoryController extends Controller
     }
 
 
+    // update category
     public function update(Request $request,$id){
         $category=categories::where('category_slug_en',$id)->first();
 
@@ -77,6 +77,20 @@ class categoryController extends Controller
             'alert-type'=> 'success',
         );
         return redirect()->route('category.all')->with($dnotification);
+
+    }
+
+    // delete category
+    public function delete($id){
+        $category=categories::findOrFail($id);
+
+        $category->delete();
+
+        $dnotification=array(
+            'message'=> 'category Delete Sucessfully',
+            'alert-type'=> 'error',
+        );
+        return redirect()->back()->with($dnotification);
 
     }
 

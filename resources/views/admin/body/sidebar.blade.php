@@ -39,6 +39,61 @@
                 </ul>
             </li>
 
+
+            <li class="menu">
+                <a href="#category" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle collapsed">
+                    <div class="">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+                        <span> Category</span>
+                    </div>
+                    <div>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                    </div>
+                </a>
+                <ul class="submenu list-unstyled collapse" id="category" data-parent="#accordionExample" style="">
+
+                    <li>
+                        <a href="#sm2" data-toggle="collapse" aria-expanded="true" class="dropdown-toggle"> Parent Category <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"></polyline></svg> </a>
+                        <ul class="list-unstyled sub-submenu collapse " id="sm2" data-parent="#category" style="">
+                            <li>
+                                <a href="{{route('category.all')}}"> Category </a>
+                            </li>
+                            <li>
+                                <a href="{{route('category.create')}}"> Create </a>
+                            </li>
+
+                        </ul>
+                    </li>
+
+                    <li>
+                        <a href="#sub" data-toggle="collapse" aria-expanded="true" class="dropdown-toggle"> Sub Category <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"></polyline></svg> </a>
+                        <ul class="list-unstyled sub-submenu collapse " id="sub" data-parent="#category" style="">
+                            <li>
+                                <a href="{{route('category.all')}}"> Category </a>
+                            </li>
+                            <li>
+                                <a href="{{route('category.create')}}"> Create </a>
+                            </li>
+
+                        </ul>
+                    </li>
+
+                    <li>
+                        <a href="#subsub" data-toggle="collapse" aria-expanded="true" class="dropdown-toggle"> sub>subCategory <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"></polyline></svg> </a>
+                        <ul class="list-unstyled sub-submenu collapse " id="subsub" data-parent="#category" style="">
+                            <li>
+                                <a href="{{route('category.all')}}"> Category </a>
+                            </li>
+                            <li>
+                                <a href="{{route('category.create')}}"> Create </a>
+                            </li>
+
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+
+
             <li class="menu">
                 <a target="_blank" href="https://designreset.com/cork/documentation/index.html" aria-expanded="false" class="dropdown-toggle">
                     <div class="">

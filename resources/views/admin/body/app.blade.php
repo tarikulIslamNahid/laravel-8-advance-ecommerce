@@ -31,6 +31,13 @@
     {{-- sweet alert --}}
 @yield('style')
 <style>
+    #sidebar ul.menu-categories ul.submenu > li a.dropdown-toggle {
+    padding: 10px 15px 10px 10px;
+}
+
+#sidebar ul.menu-categories li.menu ul.submenu > li a:before {
+  left: 0px !important;
+}
     .toast-success{
         background-color:#1abc9c !important;
     }
@@ -121,7 +128,7 @@ $(document).on('click','#delete', function (e) {
 })
     </script>
     <script>
-          toastr.options.timeOut = 1200;
+          toastr.options.timeOut = 1500;
              toastr.options.progressBar = true;
           @if(Session::has('message'))
           var type = "{{ Session::get('alert-type','info') }}"
