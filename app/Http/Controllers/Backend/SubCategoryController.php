@@ -53,4 +53,46 @@ class SubCategoryController extends Controller
 
 
         }
+
+    // show Sub Category edit page
+    public function edit($id){
+        $categories= categories::latest()->get();
+
+        $subcategory= Subcategories::where('sub_category_slug_en',$id)->first();
+        return view('admin.subcategory.edit',compact('subcategory','categories'));
+    }
+
+        // update Sub category
+        public function update(Request $request,$id){
+            $subcategory=Subcategories::where('sub_category_slug_en',$id)->first();
+
+            $subcategory->sub_category_name_en=$request->sub_category_name_en;
+            $subcategory->sub_category_slug_en= Str::slug($request->sub_category_name_en) ;
+            $subcategory->sub_category_name_bn= $request->sub_category_name_bn;
+            $subcategory->sub_category_slug_bn= strtolower(str_replace(' ', '-',$request->sub_category_name_bn));
+            $subcategory->category_id=$request->category_id;
+
+            $subcategory->update();
+
+            $dnotification=array(
+                'message'=> 'Sub Category Updated Sucessfully',
+                'alert-type'=> 'success',
+            );
+            return redirect()->route('subcategory.all')->with($dnotification);
+
+        }
+
+   // delete category
+    public function delete($id){
+        $category=Subcategories::findOrFail($id);
+
+        $category->delete();
+
+        $dnotification=array(
+            'message'=> 'Sub Category Delete Sucessfully',
+            'alert-type'=> 'error',
+        );
+        return redirect()->back()->with($dnotification);
+
+    }
 }

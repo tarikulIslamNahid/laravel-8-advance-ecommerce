@@ -69,10 +69,10 @@
                         <a href="#sub" data-toggle="collapse" aria-expanded="true" class="dropdown-toggle"> Sub Category <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"></polyline></svg> </a>
                         <ul class="list-unstyled sub-submenu collapse " id="sub" data-parent="#category" style="">
                             <li>
-                                <a href="{{route('category.all')}}"> Category </a>
+                                <a href="{{route('subcategory.all')}}">Sub Category </a>
                             </li>
                             <li>
-                                <a href="{{route('category.create')}}"> Create </a>
+                                <a href="{{route('subcategory.create')}}"> Create Sub</a>
                             </li>
 
                         </ul>
