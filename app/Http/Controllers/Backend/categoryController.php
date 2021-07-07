@@ -53,4 +53,31 @@ class categoryController extends Controller
     }
 
 
+    // show Category edit page
+    public function edit($id){
+        $categories= categories::where('category_slug_en',$id)->first();
+        return view('admin.category.edit',compact('categories'));
+    }
+
+
+    public function update(Request $request,$id){
+        $category=categories::where('category_slug_en',$id)->first();
+
+        $category->category_name_en=$request->category_name_en;
+        $category->category_slug_en= Str::slug($request->category_name_en) ;
+        $category->category_name_bn= $request->category_name_bn;
+        $category->category_slug_bn= strtolower(str_replace(' ', '-',$request->category_name_bn));
+        $category->category_icon=$request->category_icon;
+
+
+        $category->update();
+
+        $dnotification=array(
+            'message'=> 'category Updated Sucessfully',
+            'alert-type'=> 'success',
+        );
+        return redirect()->route('category.all')->with($dnotification);
+
+    }
+
 }
