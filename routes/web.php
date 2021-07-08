@@ -88,6 +88,11 @@ Route::group(['prefix'=>'admin/category','middleware'=>['auth:sanctum,admin', 'v
     Route::get('/delete/{id}', [categoryController::class, 'delete'])->name('category.delete');
 
 
+    // ajax  get sub category by category dependencies
+    Route::get('/subcategory/ajax/{category_id}', [SubCategoryController::class, 'getSubCat']);
+
+
+
 });
 
 // Admin Sub Category group routes
@@ -98,6 +103,17 @@ Route::group(['prefix'=>'admin/subcategory','middleware'=>['auth:sanctum,admin',
     Route::get('edit/{id}', [SubCategoryController::class, 'edit'])->name('subcategory.edit');
     Route::post('/update/{id}', [SubCategoryController::class, 'update'])->name('subcategory.update');
     Route::get('/delete/{id}', [SubCategoryController::class, 'delete'])->name('subcategory.delete');
+
+});
+
+// Admin Sub Category group routes
+Route::group(['prefix'=>'admin/sub/subcategory','middleware'=>['auth:sanctum,admin', 'verified']],function (){
+    Route::get('/',[SubCategoryController::class,'subindex'])->name('subsubcategory.all');
+    Route::get('/create', [SubCategoryController::class, 'subcreate'])->name('subsubcategory.create');
+    Route::post('/store', [SubCategoryController::class, 'substore'])->name('subsubcategory.store');
+    Route::get('edit/{id}', [SubCategoryController::class, 'subedit'])->name('subsubcategory.edit');
+    Route::post('/update/{id}', [SubCategoryController::class, 'subupdate'])->name('subsubcategory.update');
+    Route::get('/delete/{id}', [SubCategoryController::class, 'subdelete'])->name('subsubcategory.delete');
 
 
 
