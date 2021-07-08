@@ -116,8 +116,8 @@ class SubCategoryController extends Controller
         // Sub SUb category create page
         public function subcreate(){
             $categories= categories::latest()->get();
-            $subcategories= Subcategories::latest()->get();
-            return view('admin.subsubcategory.create',compact('categories','subcategories'));
+            // $subcategories= Subcategories::latest()->get();
+            return view('admin.subsubcategory.create',compact('categories'));
         }
 
 
@@ -158,7 +158,43 @@ class SubCategoryController extends Controller
         }
 
 
-           // delete Sub Sub category
+    // show Sub Sub Category edit page
+    public function subedit($id){
+        $categories= categories::latest()->get();
+        $subsubcategory= subsubcategory::where('subsub_category_slug_en',$id)->first();
+
+        $subcategories= Subcategories::where('category_id',$subsubcategory->category_id)->get();
+        // @dd($subcategories);
+        return view('admin.subsubcategory.edit',compact('subsubcategory','categories','subcategories'));
+    }
+
+
+
+            // update Sub Sub category
+            public function subupdate(Request $request,$id){
+
+                $subsubcategory= subsubcategory::where('subsub_category_slug_en',$id)->first();
+
+                $subsubcategory->subsub_category_name_en=$request->subsub_category_name_en;
+                $subsubcategory->subsub_category_slug_en= Str::slug($request->subsub_category_name_en) ;
+                $subsubcategory->subsub_category_name_bn= $request->subsub_category_name_bn;
+                $subsubcategory->subsub_category_slug_bn= strtolower(str_replace(' ', '-',$request->subsub_category_name_bn));
+                $subsubcategory->category_id=$request->category_id;
+                $subsubcategory->subcategory_id=$request->subcategory_id;
+                $subsubcategory->update();
+
+                $dnotification=array(
+                    'message'=> 'Sub Sub Category Updated Sucessfully',
+                    'alert-type'=> 'success',
+                );
+                return redirect()->route('subsubcategory.all')->with($dnotification);
+
+            }
+
+
+
+
+    // delete Sub Sub category
     public function subdelete($id){
         $category=subsubcategory::findOrFail($id);
 
