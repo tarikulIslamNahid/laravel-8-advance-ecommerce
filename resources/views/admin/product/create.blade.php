@@ -356,6 +356,8 @@
                     type:"GET",
                     dataType:"json",
                     success:function(data) {
+                       var d =$('select[name="subsubcategory_id"]').empty();
+
                        var d =$('select[name="subcategory_id"]').empty();
                           $.each(data, function(key, value){
                               $('select[name="subcategory_id"]').append('<option value="'+ value.id +'">' + value.sub_category_name_en + '</option>');

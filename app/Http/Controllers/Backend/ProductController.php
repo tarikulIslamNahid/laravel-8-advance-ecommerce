@@ -12,6 +12,12 @@ use Illuminate\Support\Str;
 use Intervention\Image\ImageManagerStatic as Image;
 class ProductController extends Controller
 {
+
+    public function index(){
+        return view('admin.product.index');
+
+    }
+
     // create product page
     public function create(){
         $categories= categories::latest()->get();
@@ -84,8 +90,8 @@ $product->subcategory_id=$request->subcategory_id;
 $product->subsubcategory_id=$request->subsubcategory_id;
 $product->product_name_en=$request->product_name_en;
 $product->product_name_bn=$request->product_name_bn;
-$product->product_slug_en=strtolower(str_replace(' ', '-', $request->product_name_en));
-$product->product_slug_bn=strtolower(str_replace(' ', '-', $request->product_name_bn));
+$product->product_slug_en=Str::slug($request->product_name_en);
+$product->product_slug_bn=Str::slug($request->product_name_bn);
 $product->product_code=$request->product_code;
 $product->product_qty=$request->product_qty;
 $product->product_tags_en=$request->product_tags_en;
