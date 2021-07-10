@@ -41,8 +41,9 @@
 
 
             <li class="menu">
-                <a href="#category" data-active="{{($route=='category.all') || ($route=='category.create') || ($route=='category.edit') || ($route=='subcategory.all') || ($route=='subcategory.create') ? 'true' :''}}"
-                 data-toggle="collapse" aria-expanded="{{($route=='category.all') || ($route=='category.create') || ($route=='category.edit') || ($route=='subcategory.all') || ($route=='subcategory.create') ? 'true' :''}}" class="dropdown-toggle collapsed">
+<a href="#category" data-active="{{($route=='category.all') || ($route=='category.create') || ($route=='category.edit') || ($route=='subcategory.all') || ($route=='subcategory.create') || ($route=='subcategory.edit') || ($route=='subsubcategory.all') || ($route=='subsubcategory.create') || ($route=='subsubcategory.edit')  ? 'true' : ' ' }}"
+data-toggle="collapse"
+aria-expanded="{{($route=='category.all') || ($route=='category.create') || ($route=='category.edit') || ($route=='subcategory.all') || ($route=='subcategory.create') || ($route=='subcategory.edit')  || ($route=='subsubcategory.all') || ($route=='subsubcategory.create') || ($route=='subsubcategory.edit') ? 'true' :''}}" class="dropdown-toggle collapse">
                     <div class="">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
                         <span> Category</span>
@@ -68,12 +69,12 @@
 
                     <li>
                         <a href="#sub" data-toggle="collapse" aria-expanded="true" class="dropdown-toggle"> Sub Category <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"></polyline></svg> </a>
-                        <ul class="list-unstyled sub-submenu collapse " id="sub" data-parent="#category" style="">
+                        <ul class="list-unstyled sub-submenu collapse {{($route=='subcategory.all') || ($route=='subcategory.create') || ($route=='subcategory.edit')  ? 'show' :''}}  " id="sub" data-parent="#category" style="">
                             <li>
-                                <a href="{{route('subcategory.all')}}">Sub Category </a>
+                                <a class="{{($route=='subcategory.all') ? 'hover_color' :''}} " href="{{route('subcategory.all')}}">Sub Category </a>
                             </li>
                             <li>
-                                <a href="{{route('subcategory.create')}}"> Create Sub</a>
+                                <a class="{{($route=='subcategory.create') ? 'hover_color' :''}} " href="{{route('subcategory.create')}}"> Create Sub</a>
                             </li>
 
                         </ul>
@@ -81,18 +82,40 @@
 
                     <li>
                         <a href="#subsub" data-toggle="collapse" aria-expanded="true" class="dropdown-toggle"> sub>subCategory <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"></polyline></svg> </a>
-                        <ul class="list-unstyled sub-submenu collapse " id="subsub" data-parent="#category" style="">
+                        <ul class="list-unstyled sub-submenu collapse  {{($route=='subsubcategory.all') || ($route=='subsubcategory.create') || ($route=='subsubcategory.edit')  ? 'show' :''}}  " id="subsub" data-parent="#category" style="">
                             <li>
-                                <a href="{{route('category.all')}}"> Category </a>
+                                <a class="{{($route=='subsubcategory.all') ? 'hover_color' :''}} " href="{{route('subsubcategory.all')}}">Sub Sub Category </a>
                             </li>
                             <li>
-                                <a href="{{route('category.create')}}"> Create </a>
+                                <a class="{{($route=='subsubcategory.create') ? 'hover_color' :''}} " href="{{route('subsubcategory.create')}}"> Create </a>
                             </li>
 
                         </ul>
                     </li>
                 </ul>
             </li>
+
+{{-- product  --}}
+<li class="menu">
+    <a href="#product" data-active="{{($route=='product.all') || ($route=='product.create')  || ($route=='product.edit') ? 'true' :''}}" data-toggle="collapse" aria-expanded="{{($route=='product.all') || ($route=='product.create')  || ($route=='product.edit') ? 'true' :''}}" class="dropdown-toggle">
+        <div class="">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-archive"><polyline points="21 8 21 21 3 21 3 8"></polyline><rect x="1" y="3" width="22" height="5"></rect><line x1="10" y1="12" x2="14" y2="12"></line></svg>
+            <span>Products</span>
+        </div>
+        <div>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"></polyline></svg>
+        </div>
+    </a>
+    <ul class="submenu list-unstyled collapse" id="product" data-parent="#product">
+        <li class="active">
+            <a href="{{route('product.all')}}"> All Products </a>
+        </li>
+        <li>
+            <a href="{{route('product.create')}}"> Create Products </a>
+        </li>
+    </ul>
+</li>
+{{-- product  --}}
 
 
             <li class="menu">

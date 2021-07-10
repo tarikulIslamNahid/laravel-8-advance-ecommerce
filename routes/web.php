@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Backend\ProfileController;
 use App\Http\Controllers\Backend\BrandController;
+use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\categoryController;
 use App\Http\Controllers\Backend\SubCategoryController;
 use App\Http\Controllers\Frontend\IndexController;
@@ -90,6 +91,7 @@ Route::group(['prefix'=>'admin/category','middleware'=>['auth:sanctum,admin', 'v
 
     // ajax  get sub category by category dependencies
     Route::get('/subcategory/ajax/{category_id}', [SubCategoryController::class, 'getSubCat']);
+    Route::get('/subsubcategory/ajax/{category_id}', [SubCategoryController::class, 'getSubSubCat']);
 
 
 
@@ -106,7 +108,7 @@ Route::group(['prefix'=>'admin/subcategory','middleware'=>['auth:sanctum,admin',
 
 });
 
-// Admin Sub Category group routes
+// Admin Sub Sub Category group routes
 Route::group(['prefix'=>'admin/sub/subcategory','middleware'=>['auth:sanctum,admin', 'verified']],function (){
     Route::get('/',[SubCategoryController::class,'subindex'])->name('subsubcategory.all');
     Route::get('/create', [SubCategoryController::class, 'subcreate'])->name('subsubcategory.create');
@@ -114,10 +116,24 @@ Route::group(['prefix'=>'admin/sub/subcategory','middleware'=>['auth:sanctum,adm
     Route::get('edit/{id}', [SubCategoryController::class, 'subedit'])->name('subsubcategory.edit');
     Route::post('/update/{id}', [SubCategoryController::class, 'subupdate'])->name('subsubcategory.update');
     Route::get('/delete/{id}', [SubCategoryController::class, 'subdelete'])->name('subsubcategory.delete');
+});
 
-
+// Admin Product group routes
+Route::group(['prefix'=>'admin/product','middleware'=>['auth:sanctum,admin', 'verified']],function (){
+    Route::get('/', [ProductController::class, 'index'])->name('product.all');
+    Route::get('/create', [ProductController::class, 'create'])->name('product.create');
+    Route::post('/store', [ProductController::class, 'store'])->name('product.store');
+    Route::get('edit/{id}', [ProductController::class, 'edit'])->name('product.edit');
+    Route::post('/update/{id}', [ProductController::class, 'update'])->name('product.update');
+    Route::get('/delete/{id}', [ProductController::class, 'delete'])->name('product.delete');
 
 });
+
+
+
+
+
+
 
 
 

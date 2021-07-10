@@ -105,6 +105,14 @@ class SubCategoryController extends Controller
 
     }
 
+    // ajax  get Sub sub category by category dependencies
+    public function getSubSubCat($subcat_id){
+
+        $subsubcat= subsubcategory::where('subcategory_id',$subcat_id)->get();
+        return json_encode($subsubcat);
+
+    }
+
  /* ---------------- sub sub category Functions  --------------------------- */
  /* ---------------- sub sub category Functions  --------------------------- */
 

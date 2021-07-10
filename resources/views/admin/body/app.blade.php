@@ -28,6 +28,9 @@
     {{-- <link href="{{asset('backend')}}/plugins/sweetalerts/sweetalert2.min.css" rel="stylesheet" type="text/css" /> --}}
     <link href="{{asset('backend')}}/plugins/sweetalerts/sweetalert.css" rel="stylesheet" type="text/css" />
     <link href="{{asset('backend')}}/assets/css/components/custom-sweetalert.css" rel="stylesheet" type="text/css" />
+    <link href="{{asset('backend')}}/assets/css/tag.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="{{asset('backend')}}/assets/css/forms/switches.css">
+    <script src="https://cdn.tiny.cloud/1/v8hpk1i30dywrt74ujgjzv5qhaexlvhqaxf33ortnf1ocbeu/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
     {{-- sweet alert --}}
 @yield('style')
 <style>
@@ -79,6 +82,7 @@
     <!-- END MAIN CONTAINER -->
 
     <!-- BEGIN GLOBAL MANDATORY SCRIPTS -->
+
     <script src="{{asset('backend')}}/assets/js/libs/jquery-3.1.1.min.js"></script>
     <script src="{{asset('backend')}}/bootstrap/js/popper.min.js"></script>
     <script src="{{asset('backend')}}/bootstrap/js/bootstrap.min.js"></script>
@@ -101,8 +105,36 @@
 <script src="{{asset('backend')}}/plugins/sweetalerts/sweetalert2.min.js"></script>
 <script src="{{asset('backend')}}/plugins/sweetalerts/custom-sweetalert.js"></script>
 {{-- sweetalert --}}
+<script src="{{asset('backend')}}/assets/js/tag.js"></script>
+
+
     <!-- BEGIN PAGE LEVEL SCRIPTS -->
     <script src="{{asset('backend')}}/plugins/table/datatable/datatables.js"></script>
+    <script>
+
+
+tinymce.init({
+    selector: 'textarea',
+  height: 500,
+  plugins: 'codesample code',
+  codesample_languages: [
+    {text: 'HTML/XML', value: 'markup'},
+    {text: 'JavaScript', value: 'javascript'},
+    {text: 'CSS', value: 'css'},
+    {text: 'PHP', value: 'php'},
+    {text: 'Ruby', value: 'ruby'},
+    {text: 'Python', value: 'python'},
+    {text: 'Java', value: 'java'},
+    {text: 'C', value: 'c'},
+    {text: 'C#', value: 'csharp'},
+    {text: 'C++', value: 'cpp'}
+  ],
+  toolbar: 'codesample code',
+  content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
+});
+
+ 
+      </script>
     <script>
 
 $(document).on('click','#delete', function (e) {
