@@ -137,6 +137,8 @@ Route::group(['prefix'=>'admin/slider','middleware'=>['auth:sanctum,admin', 'ver
     Route::post('/store', [SliderController::class, 'store'])->name('slider.store');
     Route::get('edit/{id}', [SliderController::class, 'edit'])->name('slider.edit');
     Route::post('/update/{id}', [SliderController::class, 'update'])->name('slider.update');
+    Route::get('/inactive/{id}', [SliderController::class, 'inactive'])->name('slider.inactive');
+    Route::get('/active/{id}', [SliderController::class, 'active'])->name('slider.active');
     Route::get('/delete/{id}', [SliderController::class, 'delete'])->name('slider.delete');
 
 });
