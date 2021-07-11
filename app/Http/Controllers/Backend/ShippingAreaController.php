@@ -88,11 +88,11 @@ public function DivisionUpdate(Request $request,$id){
 
           ]);
 
-          $coupon= new district;
-          $coupon->district_name= $request->district_name;
-          $coupon->division_id= $request->division_id;
-          $coupon->created_at= Carbon::now();
-          $coupon->save();
+          $district= new district;
+          $district->district_name= $request->district_name;
+          $district->division_id= $request->division_id;
+          $district->created_at= Carbon::now();
+          $district->save();
           $notification = array(
               'message' => 'District Created Successfully',
               'alert-type' => 'success'
@@ -101,6 +101,41 @@ public function DivisionUpdate(Request $request,$id){
           return redirect()->back()->with($notification);
 
     }
+
+    // edit show district
+    public function DistrictEdit($id){
+        $districts= district::find($id);
+        $divisions= ship_division::latest()->get();
+
+        return view('admin.District.edit',compact('divisions','districts'));
+
+     }
+
+
+     public function DistrictUpdate(Request $request,$id){
+
+
+        $request->validate([
+            'district_name' =>'required|max:255',
+            'division_id' =>'required',
+
+          ]);
+
+          $district= district::find($id);
+          $district->district_name= $request->district_name;
+          $district->division_id= $request->division_id;
+          $district->created_at= Carbon::now();
+          $district->update();
+          $notification = array(
+              'message' => 'District Updated Successfully',
+              'alert-type' => 'success'
+          );
+
+          return redirect()->route('district.all')->with($notification);
+
+    }
+
+
 
     public function DistrictDelete($id){
         district::find($id)->delete();
