@@ -34,6 +34,30 @@ class ShippingAreaController extends Controller
 
    }
 
+public function DivisionEdit($id){
+   $divisions= ship_division::find($id);
+   return view('admin.division.edit',compact('divisions'));
+
+}
+public function DivisionUpdate(Request $request,$id){
+    $request->validate([
+        'division_name' =>'required|max:255',
+
+      ]);
+
+      $coupon= ship_division::find($id);
+      $coupon->division_name= $request->division_name;
+      $coupon->updated_at= Carbon::now();
+      $coupon->update();
+      $notification = array(
+          'message' => 'Division Updated Successfully',
+          'alert-type' => 'success'
+      );
+
+      return redirect()->route('division.all')->with($notification);
+
+}
+
    public function DivisionDelete($id){
     ship_division::find($id)->delete();
     $notification = array(
