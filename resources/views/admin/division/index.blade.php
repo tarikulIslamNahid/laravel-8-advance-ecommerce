@@ -2,7 +2,7 @@
 
 @section('title','All Divisions')
 @section('breadcrumb')
-<li class="breadcrumb-item"><a href="{{route('division.all')}}">Categories</a></li>
+<li class="breadcrumb-item"><a href="{{route('division.all')}}">Division</a></li>
 {{-- <li class="breadcrumb-item active" aria-current="page"><span>Sales</span></li> --}}
 @endsection
 @section('content')
@@ -70,7 +70,7 @@
                 </div>
 
             </div>
- 
+
 <button class="mb-4 btn btn-primary" type="submit">Create</button>
 
         </form>

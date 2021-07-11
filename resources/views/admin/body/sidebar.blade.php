@@ -165,7 +165,7 @@ aria-expanded="{{($route=='category.all') || ($route=='category.create') || ($ro
 
 {{-- Shipping Area  --}}
 <li class="menu">
-    <a href="#shipping" data-active="{{($route=='division.all') || ($route=='division.edit') ? 'true' :''}}" data-toggle="collapse" aria-expanded="{{($route=='division.all') || ($route=='division.edit') ? 'true' :''}}" class="dropdown-toggle">
+    <a href="#shipping" data-active="{{($route=='division.all') || ($route=='division.edit') || ($route=='district.all') || ($route=='district.edit') ? 'true' :''}}" data-toggle="collapse" aria-expanded="{{($route=='division.all') || ($route=='division.edit')  || ($route=='district.all') || ($route=='district.edit') ? 'true' :''}}" class="dropdown-toggle">
         <div class="">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-scissors"><circle cx="6" cy="6" r="3"></circle><circle cx="6" cy="18" r="3"></circle><line x1="20" y1="4" x2="8.12" y2="15.88"></line><line x1="14.47" y1="14.48" x2="20" y2="20"></line><line x1="8.12" y1="8.12" x2="12" y2="12"></line></svg>
             <span>Shipping</span>
@@ -174,9 +174,13 @@ aria-expanded="{{($route=='category.all') || ($route=='category.create') || ($ro
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"></polyline></svg>
         </div>
     </a>
-    <ul class="submenu list-unstyled collapse {{($route=='division.all') || ($route=='division.edit') ? 'show' :''}}" id="shipping" data-parent="#product">
+    <ul class="submenu list-unstyled collapse {{($route=='division.all') || ($route=='division.edit') || ($route=='district.all') || ($route=='district.edit') ? 'show' :''}}" id="shipping" data-parent="#product">
         <li class="{{($route=='division.all') ? 'active' :''}}">
             <a href="{{route('division.all')}}"> Divisions </a>
+        </li>
+
+        <li class="{{($route=='district.all') ? 'active' :''}}">
+            <a href="{{route('district.all')}}"> District </a>
         </li>
 
     </ul>

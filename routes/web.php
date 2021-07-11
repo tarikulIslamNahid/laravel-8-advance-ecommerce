@@ -172,6 +172,21 @@ Route::group(['prefix'=>'admin/shipping','middleware'=>['auth:sanctum,admin', 'v
 
     });
 
+
+        // shipping District routes Group
+        Route::group(['prefix'=>'district'],function (){
+
+            // shipping District routes
+            Route::get('/', [ShippingAreaController::class, 'DistrictIndex'])->name('district.all');
+            Route::post('/store', [ShippingAreaController::class, 'DistrictStore'])->name('district.store');
+            Route::get('/edit/{id}', [ShippingAreaController::class, 'DistrictEdit'])->name('district.edit');
+            Route::post('/update/{id}', [ShippingAreaController::class, 'DistrictUpdate'])->name('district.update');
+            Route::get('/delete/{id}', [ShippingAreaController::class, 'DistrictDelete'])->name('district.delete');
+
+            });
+
+
+
 });
 
 

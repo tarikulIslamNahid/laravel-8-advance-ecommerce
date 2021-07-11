@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Models\district;
 use App\Models\ship_division;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -68,5 +69,39 @@ public function DivisionUpdate(Request $request,$id){
     return redirect()->back()->with($notification);
 
    }
+
+
+
+       //------------------------------------ District Area --------------------------------
+       public function DistrictIndex(){
+        $divisions= ship_division::latest()->get();
+        $districts= district::latest()->get();
+        return view('admin.District.index',compact('divisions','districts'));
+    }
+
+    public function DistrictStore(Request $request){
+
+
+        $request->validate([
+            'district_name' =>'required|unique:districts|max:255',
+            'division_id' =>'required',
+
+          ]);
+
+          $coupon= new district;
+          $coupon->district_name= $request->district_name;
+          $coupon->division_id= $request->division_id;
+          $coupon->created_at= Carbon::now();
+          $coupon->save();
+          $notification = array(
+              'message' => 'District Created Successfully',
+              'alert-type' => 'success'
+          );
+
+          return redirect()->back()->with($notification);
+
+
+
+    }
 
 }
