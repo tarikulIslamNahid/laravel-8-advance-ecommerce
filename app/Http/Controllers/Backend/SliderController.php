@@ -44,9 +44,7 @@ class SliderController extends Controller
             $fileName=date('YmdHi').uniqid().'.'.$file->getClientOriginalExtension();
             Image::make($file)->resize(870,370)->save('storage/slider/'.$fileName);
             $slider['slider_img']=$fileName;
-            // if (file_exists(public_path('storage/profile-photos/'.$brand->profile_photo_path))) {
-            //     unlink(public_path('storage/profile-photos/'.$brand->profile_photo_path));
-            //     }
+
 
         }
 
@@ -60,6 +58,41 @@ class SliderController extends Controller
 
 
     }
+    // show Slider edit page
+    public function edit($id){
+        $sliders= Slider::findOrFail($id);
+        return view('admin.slider.edit',compact('sliders'));
+    }
+
+
+    public function update(Request $request,$id){
+        $slider=Slider::findOrFail($id);
+
+        if($request->file('slider_img')){
+           $oldImg= $slider->slider_img;
+           if (file_exists(public_path('storage/slider/'.$oldImg))) {
+            unlink(public_path('storage/slider/'.$oldImg));
+            }
+            $file=$request->file('slider_img');
+            $fileName=date('YmdHi').uniqid().'.'.$file->getClientOriginalExtension();
+            Image::make($file)->resize(300,300)->save('storage/slider/'.$fileName);
+            $slider['slider_img']=$fileName;
+
+
+        }
+        $slider->title=$request->title;
+        $slider->link= $request->link;
+        $slider->description= $request->description;
+        $slider->update();
+
+        $dnotification=array(
+            'message'=> 'Slider Updated Sucessfully',
+            'alert-type'=> 'success',
+        );
+        return redirect()->route('slider.all')->with($dnotification);
+
+    }
+
 
     public function inactive($id){
     	Slider::findOrFail($id)->update(['status' => 0]);
@@ -82,6 +115,22 @@ class SliderController extends Controller
 		);
 
 		return redirect()->back()->with($notification);
+
+    }
+
+    public function delete($id){
+        $slider=Slider::findOrFail($id);
+      $image=  $slider->slider_img;
+        if (file_exists(public_path('storage/slider/'.$image))) {
+            unlink(public_path('storage/slider/'.$image));
+            }
+            $slider->delete();
+
+            $dnotification=array(
+                'message'=> 'Slider Delete Sucessfully',
+                'alert-type'=> 'error',
+            );
+            return redirect()->back()->with($dnotification);
 
     }
 
