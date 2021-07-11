@@ -9,6 +9,8 @@ use Illuminate\Http\Request;
 
 class ShippingAreaController extends Controller
 {
+
+    //------------------------------------ Divisions Area --------------------------------
    public function DivisionIndex(){
        $divisions= ship_division::latest()->get();
        return view('admin.division.index',compact('divisions'));
@@ -25,6 +27,17 @@ class ShippingAreaController extends Controller
     $coupon->save();
     $notification = array(
         'message' => 'Division Created Successfully',
+        'alert-type' => 'success'
+    );
+
+    return redirect()->back()->with($notification);
+
+   }
+
+   public function DivisionDelete($id){
+    ship_division::find($id)->delete();
+    $notification = array(
+        'message' => 'Division Delete Successfully',
         'alert-type' => 'success'
     );
 
