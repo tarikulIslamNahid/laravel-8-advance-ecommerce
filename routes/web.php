@@ -9,6 +9,7 @@ use App\Http\Controllers\Backend\categoryController;
 use App\Http\Controllers\Backend\SubCategoryController;
 use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\Backend\CouponController;
+use App\Http\Controllers\Backend\ShippingAreaController;
 use App\Http\Controllers\Frontend\IndexController;
 
 // frontend home page
@@ -156,6 +157,22 @@ Route::group(['prefix'=>'admin/coupon','middleware'=>['auth:sanctum,admin', 'ver
 
 });
 
+// Admin Shipping group routes
+Route::group(['prefix'=>'admin/shipping','middleware'=>['auth:sanctum,admin', 'verified']],function (){
+
+    // shipping Division routes Group
+    Route::group(['prefix'=>'division'],function (){
+
+    // shipping Division routes
+    Route::get('/', [ShippingAreaController::class, 'DivisionIndex'])->name('division.all');
+    Route::post('/store', [ShippingAreaController::class, 'DivisionStore'])->name('division.store');
+    Route::get('/edit/{id}', [ShippingAreaController::class, 'DivisionEdit'])->name('division.edit');
+    Route::post('/update/{id}', [ShippingAreaController::class, 'DivisionUpdate'])->name('division.update');
+    Route::get('/delete/{id}', [ShippingAreaController::class, 'DivisionDelete'])->name('division.delete');
+
+    });
+
+});
 
 
 
