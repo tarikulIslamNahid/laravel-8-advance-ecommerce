@@ -10,6 +10,7 @@ use Intervention\Image\ImageManagerStatic as Image;
 class SliderController extends Controller
 {
     public function index(){
+         
         $sliders=Slider::latest()->get();
         return view('admin.slider.index',compact('sliders'));
     }

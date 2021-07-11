@@ -122,24 +122,46 @@ aria-expanded="{{($route=='category.all') || ($route=='category.create') || ($ro
 <li class="menu">
     <a href="#slider" data-active="{{($route=='slider.all') || ($route=='slider.create')  || ($route=='slider.edit') ? 'true' :''}}" data-toggle="collapse" aria-expanded="{{($route=='slider.all') || ($route=='slider.create')  || ($route=='slider.edit') ? 'true' :''}}" class="dropdown-toggle">
         <div class="">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-archive"><polyline points="21 8 21 21 3 21 3 8"></polyline><rect x="1" y="3" width="22" height="5"></rect><line x1="10" y1="12" x2="14" y2="12"></line></svg>
-            <span>Products</span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-server"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect><rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect><line x1="6" y1="6" x2="6.01" y2="6"></line><line x1="6" y1="18" x2="6.01" y2="18"></line></svg>
+            <span>Sidebar</span>
         </div>
         <div>
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"></polyline></svg>
         </div>
     </a>
-    <ul class="submenu list-unstyled collapse" id="slider" data-parent="#product">
-        <li class="active">
+    <ul class="submenu list-unstyled collapse {{($route=='slider.all') || ($route=='slider.create')  || ($route=='slider.edit') ? 'show' :''}}" id="slider" data-parent="#product">
+        <li class="{{($route=='slider.all') ? 'active' :''}}">
             <a href="{{route('slider.all')}}"> All Sliders </a>
         </li>
-        <li>
+        <li class="{{($route=='slider.create') || ($route=='slider.create')  || ($route=='slider.edit') ? 'active' :''}}">
             <a href="{{route('slider.create')}}"> Create Sliders </a>
         </li>
     </ul>
 </li>
 {{-- Slider  --}}
 
+
+{{-- Coupon  --}}
+<li class="menu">
+    <a href="#coupon" data-active="{{($route=='coupon.all') || ($route=='coupon.create')  || ($route=='coupon.edit') ? 'true' :''}}" data-toggle="collapse" aria-expanded="{{($route=='coupon.all') || ($route=='coupon.create')  || ($route=='coupon.edit') ? 'true' :''}}" class="dropdown-toggle">
+        <div class="">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-server"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect><rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect><line x1="6" y1="6" x2="6.01" y2="6"></line><line x1="6" y1="18" x2="6.01" y2="18"></line></svg>
+            <span>Coupon</span>
+        </div>
+        <div>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"></polyline></svg>
+        </div>
+    </a>
+    <ul class="submenu list-unstyled collapse {{($route=='coupon.all') || ($route=='coupon.create')  || ($route=='coupon.edit') ? 'show' :''}}" id="coupon" data-parent="#product">
+        <li class="{{($route=='coupon.all') ? 'active' :''}}">
+            <a href="{{route('coupon.all')}}"> All Coupons </a>
+        </li>
+        <li class="{{($route=='coupon.create') || ($route=='coupon.create')  || ($route=='coupon.edit') ? 'active' :''}}">
+            <a href="{{route('coupon.create')}}"> Create Coupon </a>
+        </li>
+    </ul>
+</li>
+{{-- Coupon  --}}
 
             <li class="menu">
                 <a target="_blank" href="https://designreset.com/cork/documentation/index.html" aria-expanded="false" class="dropdown-toggle">

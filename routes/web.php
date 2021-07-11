@@ -8,6 +8,7 @@ use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\categoryController;
 use App\Http\Controllers\Backend\SubCategoryController;
 use App\Http\Controllers\Backend\SliderController;
+use App\Http\Controllers\Backend\CouponController;
 use App\Http\Controllers\Frontend\IndexController;
 
 // frontend home page
@@ -144,7 +145,16 @@ Route::group(['prefix'=>'admin/slider','middleware'=>['auth:sanctum,admin', 'ver
 });
 
 
+// Admin Coupon group routes
+Route::group(['prefix'=>'admin/coupon','middleware'=>['auth:sanctum,admin', 'verified']],function (){
+    Route::get('/', [CouponController::class, 'index'])->name('coupon.all');
+    Route::get('/create', [CouponController::class, 'create'])->name('coupon.create');
+    Route::post('/store', [CouponController::class, 'store'])->name('coupon.store');
+    Route::get('edit/{id}', [CouponController::class, 'edit'])->name('coupon.edit');
+    Route::post('/update/{id}', [CouponController::class, 'update'])->name('coupon.update');
+    Route::get('/delete/{id}', [CouponController::class, 'delete'])->name('coupon.delete');
 
+});
 
 
 
