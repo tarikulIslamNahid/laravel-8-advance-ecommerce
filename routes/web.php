@@ -7,6 +7,7 @@ use App\Http\Controllers\Backend\BrandController;
 use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\categoryController;
 use App\Http\Controllers\Backend\SubCategoryController;
+use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\Frontend\IndexController;
 
 // frontend home page
@@ -126,6 +127,17 @@ Route::group(['prefix'=>'admin/product','middleware'=>['auth:sanctum,admin', 've
     Route::get('edit/{id}', [ProductController::class, 'edit'])->name('product.edit');
     Route::post('/update/{id}', [ProductController::class, 'update'])->name('product.update');
     Route::get('/delete/{id}', [ProductController::class, 'delete'])->name('product.delete');
+
+});
+
+// Admin Sliders group routes
+Route::group(['prefix'=>'admin/slider','middleware'=>['auth:sanctum,admin', 'verified']],function (){
+    Route::get('/', [SliderController::class, 'index'])->name('slider.all');
+    Route::get('/create', [SliderController::class, 'create'])->name('slider.create');
+    Route::post('/store', [SliderController::class, 'store'])->name('slider.store');
+    Route::get('edit/{id}', [SliderController::class, 'edit'])->name('slider.edit');
+    Route::post('/update/{id}', [SliderController::class, 'update'])->name('slider.update');
+    Route::get('/delete/{id}', [SliderController::class, 'delete'])->name('slider.delete');
 
 });
 

@@ -118,6 +118,29 @@ aria-expanded="{{($route=='category.all') || ($route=='category.create') || ($ro
 {{-- product  --}}
 
 
+{{-- Slider  --}}
+<li class="menu">
+    <a href="#slider" data-active="{{($route=='slider.all') || ($route=='slider.create')  || ($route=='slider.edit') ? 'true' :''}}" data-toggle="collapse" aria-expanded="{{($route=='slider.all') || ($route=='slider.create')  || ($route=='slider.edit') ? 'true' :''}}" class="dropdown-toggle">
+        <div class="">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-archive"><polyline points="21 8 21 21 3 21 3 8"></polyline><rect x="1" y="3" width="22" height="5"></rect><line x1="10" y1="12" x2="14" y2="12"></line></svg>
+            <span>Products</span>
+        </div>
+        <div>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"></polyline></svg>
+        </div>
+    </a>
+    <ul class="submenu list-unstyled collapse" id="slider" data-parent="#product">
+        <li class="active">
+            <a href="{{route('slider.all')}}"> All Sliders </a>
+        </li>
+        <li>
+            <a href="{{route('slider.create')}}"> Create Sliders </a>
+        </li>
+    </ul>
+</li>
+{{-- Slider  --}}
+
+
             <li class="menu">
                 <a target="_blank" href="https://designreset.com/cork/documentation/index.html" aria-expanded="false" class="dropdown-toggle">
                     <div class="">
