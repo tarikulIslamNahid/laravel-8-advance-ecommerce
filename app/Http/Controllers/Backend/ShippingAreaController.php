@@ -100,8 +100,17 @@ public function DivisionUpdate(Request $request,$id){
 
           return redirect()->back()->with($notification);
 
-
-
     }
+
+    public function DistrictDelete($id){
+        district::find($id)->delete();
+        $notification = array(
+            'message' => 'District Delete Successfully',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->back()->with($notification);
+
+       }
 
 }
