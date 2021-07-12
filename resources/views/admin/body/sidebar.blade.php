@@ -123,7 +123,7 @@ aria-expanded="{{($route=='category.all') || ($route=='category.create') || ($ro
     <a href="#slider" data-active="{{($route=='slider.all') || ($route=='slider.create')  || ($route=='slider.edit') ? 'true' :''}}" data-toggle="collapse" aria-expanded="{{($route=='slider.all') || ($route=='slider.create')  || ($route=='slider.edit') ? 'true' :''}}" class="dropdown-toggle">
         <div class="">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-server"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect><rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect><line x1="6" y1="6" x2="6.01" y2="6"></line><line x1="6" y1="18" x2="6.01" y2="18"></line></svg>
-            <span>Sidebar</span>
+            <span>Sliders</span>
         </div>
         <div>
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"></polyline></svg>
@@ -167,7 +167,7 @@ aria-expanded="{{($route=='category.all') || ($route=='category.create') || ($ro
 <li class="menu">
     <a href="#shipping" data-active="{{($route=='division.all') || ($route=='division.edit') || ($route=='district.all') || ($route=='district.edit') || ($route=='state.all') || ($route=='state.edit') ? 'true' :''}}" data-toggle="collapse" aria-expanded="{{($route=='division.all') || ($route=='division.edit')  || ($route=='district.all') || ($route=='district.edit') || ($route=='state.all') || ($route=='state.edit') ? 'true' :''}}" class="dropdown-toggle">
         <div class="">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-scissors"><circle cx="6" cy="6" r="3"></circle><circle cx="6" cy="18" r="3"></circle><line x1="20" y1="4" x2="8.12" y2="15.88"></line><line x1="14.47" y1="14.48" x2="20" y2="20"></line><line x1="8.12" y1="8.12" x2="12" y2="12"></line></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-gift"><polyline points="20 12 20 22 4 22 4 12"></polyline><rect x="2" y="7" width="20" height="5"></rect><line x1="12" y1="22" x2="12" y2="7"></line><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"></path><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"></path></svg>
             <span>Shipping</span>
         </div>
         <div>
@@ -190,6 +190,31 @@ aria-expanded="{{($route=='category.all') || ($route=='category.create') || ($ro
     </ul>
 </li>
 {{-- Shipping Area  --}}
+
+
+{{-- Blog System  --}}
+<li class="menu">
+    <a href="#blog" data-active="{{($route=='blogcat.all') || ($route=='blogcat.edit') ? 'true' :''}}" data-toggle="collapse" aria-expanded="{{($route=='blogcat.all') || ($route=='blogcat.edit') ? 'true' :''}}" class="dropdown-toggle">
+        <div class="">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-gift"><polyline points="20 12 20 22 4 22 4 12"></polyline><rect x="2" y="7" width="20" height="5"></rect><line x1="12" y1="22" x2="12" y2="7"></line><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"></path><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"></path></svg>
+            <span>Blog System </span>
+        </div>
+        <div>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"></polyline></svg>
+        </div>
+    </a>
+    <ul class="submenu list-unstyled collapse {{($route=='blogcat.all') || ($route=='blogcat.edit') ? 'show' :''}}" id="blog" data-parent="#blog">
+        {{-- <li class="{{($route=='division.all') ? 'active' :''}}">
+            <a href="{{route('division.all')}}"> All Posts </a>
+        </li> --}}
+
+        <li class="{{($route=='district.all') ? 'active' :''}}">
+            <a href="{{route('district.all')}}"> Categories </a>
+        </li>
+
+    </ul>
+</li>
+{{-- Blog System   --}}
 
             <li class="menu">
                 <a target="_blank" href="https://designreset.com/cork/documentation/index.html" aria-expanded="false" class="dropdown-toggle">

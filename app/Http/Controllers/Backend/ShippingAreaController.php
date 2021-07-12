@@ -190,6 +190,41 @@ public function DivisionUpdate(Request $request,$id){
 
         }
 
+
+            // edit show district
+    public function StateEdit($id){
+        $state= State::find($id);
+        $divisions= ship_division::latest()->get();
+        $districts= district::where('division_id',$state->division_id)->get();
+
+        return view('admin.state.edit',compact('divisions','districts','state'));
+
+     }
+
+
+     public function StateUpdate(Request $request,$id){
+        $request->validate([
+            'division_id' =>'required',
+            'district_id' =>'required',
+            'state_name' =>'required',
+
+        ]);
+
+        $state= State::find($id);
+        $state->division_id= $request->division_id;
+        $state->district_id= $request->district_id;
+        $state->state_name= $request->state_name;
+        $state->updated_at= Carbon::now();
+        $state->save();
+        $notification = array(
+            'message' => 'State Updated Successfully',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->route('state.all')->with($notification);
+
+        }
+
         public function StateDelete($id){
             State::find($id)->delete();
             $notification = array(

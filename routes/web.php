@@ -10,6 +10,7 @@ use App\Http\Controllers\Backend\SubCategoryController;
 use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\Backend\CouponController;
 use App\Http\Controllers\Backend\ShippingAreaController;
+use App\Http\Controllers\Backend\Blog_categoryController;
 use App\Http\Controllers\Frontend\IndexController;
 
 // frontend home page
@@ -175,34 +176,51 @@ Route::group(['prefix'=>'admin/shipping','middleware'=>['auth:sanctum,admin', 'v
 
     });
 
+    // shipping District routes Group
+    Route::group(['prefix'=>'district'],function (){
 
-        // shipping District routes Group
-        Route::group(['prefix'=>'district'],function (){
+    // shipping District routes
+    Route::get('/', [ShippingAreaController::class, 'DistrictIndex'])->name('district.all');
+    Route::post('/store', [ShippingAreaController::class, 'DistrictStore'])->name('district.store');
+    Route::get('/edit/{id}', [ShippingAreaController::class, 'DistrictEdit'])->name('district.edit');
+    Route::post('/update/{id}', [ShippingAreaController::class, 'DistrictUpdate'])->name('district.update');
+    Route::get('/delete/{id}', [ShippingAreaController::class, 'DistrictDelete'])->name('district.delete');
 
-            // shipping District routes
-            Route::get('/', [ShippingAreaController::class, 'DistrictIndex'])->name('district.all');
-            Route::post('/store', [ShippingAreaController::class, 'DistrictStore'])->name('district.store');
-            Route::get('/edit/{id}', [ShippingAreaController::class, 'DistrictEdit'])->name('district.edit');
-            Route::post('/update/{id}', [ShippingAreaController::class, 'DistrictUpdate'])->name('district.update');
-            Route::get('/delete/{id}', [ShippingAreaController::class, 'DistrictDelete'])->name('district.delete');
+    });
 
-            });
+    // shipping State routes Group
+    Route::group(['prefix'=>'state'],function (){
 
-                    // shipping State routes Group
-        Route::group(['prefix'=>'state'],function (){
+    // shipping District routes
+    Route::get('/', [ShippingAreaController::class, 'StateIndex'])->name('state.all');
+    Route::post('/store', [ShippingAreaController::class, 'StateStore'])->name('state.store');
+    Route::get('/edit/{id}', [ShippingAreaController::class, 'StateEdit'])->name('state.edit');
+    Route::post('/update/{id}', [ShippingAreaController::class, 'StateUpdate'])->name('state.update');
+    Route::get('/delete/{id}', [ShippingAreaController::class, 'StateDelete'])->name('state.delete');
 
-            // shipping District routes
-            Route::get('/', [ShippingAreaController::class, 'StateIndex'])->name('state.all');
-            Route::post('/store', [ShippingAreaController::class, 'StateStore'])->name('state.store');
-            Route::get('/edit/{id}', [ShippingAreaController::class, 'StateEdit'])->name('state.edit');
-            Route::post('/update/{id}', [ShippingAreaController::class, 'StateUpdate'])->name('state.update');
-            Route::get('/delete/{id}', [ShippingAreaController::class, 'StateDelete'])->name('state.delete');
-
-            });
-
-
+    });
 
 });
+
+
+// Admin Blog group routes
+// Route::group(['prefix'=>'admin/blog','middleware'=>['auth:sanctum,admin', 'verified']],function (){
+
+//     // Blog categories routes Group
+//     Route::group(['prefix'=>'category'],function (){
+
+//     // Blog categories routes
+//     Route::get('/', [Blog_categoryController::class, 'BlogCatIndex'])->name('blogcat.all');
+//     Route::post('/store', [Blog_categoryController::class, 'BlogCatStore'])->name('blogcat.store');
+//     Route::get('/edit/{id}', [Blog_categoryController::class, 'BlogCatEdit'])->name('blogcat.edit');
+//     Route::post('/update/{id}', [Blog_categoryController::class, 'BlogCatUpdate'])->name('blogcat.update');
+//     Route::get('/delete/{id}', [Blog_categoryController::class, 'BlogCatDelete'])->name('blogcat.delete');
+
+//     });
+
+
+
+// });
 
 
 
