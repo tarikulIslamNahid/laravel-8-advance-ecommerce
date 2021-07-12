@@ -218,6 +218,19 @@ Route::group(['prefix'=>'admin/blog','middleware'=>['auth:sanctum,admin', 'verif
 
     });
 
+    // BlogPost routes Group
+    Route::group(['prefix'=>'post'],function (){
+
+    // Blog Post routes
+    Route::get('/', [BlogSystemController::class, 'BlogPostIndex'])->name('blogpost.all');
+    Route::get('/create', [BlogSystemController::class, 'BlogPostCreate'])->name('blogpost.create');
+    Route::post('/store', [BlogSystemController::class, 'BlogPostStore'])->name('blogpost.store');
+    Route::get('/edit/{id}', [BlogSystemController::class, 'BlogPostEdit'])->name('blogpost.edit');
+    Route::post('/update/{id}', [BlogSystemController::class, 'BlogPostUpdate'])->name('blogpost.update');
+    Route::get('/delete/{id}', [BlogSystemController::class, 'BlogPostDelete'])->name('blogpost.delete');
+
+    });
+
 
 
 });

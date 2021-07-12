@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use App\Models\blog_category;
+use App\Models\blog_posts;
 use Carbon\Carbon;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
@@ -82,4 +83,17 @@ class BlogSystemController extends Controller
             return redirect()->back()->with($dnotification);
 
         }
+
+
+
+            //------------------------------------ Blog Post Area --------------------------------
+   public function BlogPostIndex(){
+    $posts= blog_posts::latest()->get();
+    return view('admin.blogsystem.post.index',compact('posts'));
+}
+
+public function BlogPostCreate(){
+    $categories= blog_category::latest()->get();
+    return view('admin.blogsystem.post.create',compact('categories'));
+}
 }
