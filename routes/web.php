@@ -170,6 +170,9 @@ Route::group(['prefix'=>'admin/shipping','middleware'=>['auth:sanctum,admin', 'v
     Route::post('/update/{id}', [ShippingAreaController::class, 'DivisionUpdate'])->name('division.update');
     Route::get('/delete/{id}', [ShippingAreaController::class, 'DivisionDelete'])->name('division.delete');
 
+    Route::get('/ajax/{division_id}', [ShippingAreaController::class, 'getDistrict']);
+
+
     });
 
 
@@ -182,6 +185,18 @@ Route::group(['prefix'=>'admin/shipping','middleware'=>['auth:sanctum,admin', 'v
             Route::get('/edit/{id}', [ShippingAreaController::class, 'DistrictEdit'])->name('district.edit');
             Route::post('/update/{id}', [ShippingAreaController::class, 'DistrictUpdate'])->name('district.update');
             Route::get('/delete/{id}', [ShippingAreaController::class, 'DistrictDelete'])->name('district.delete');
+
+            });
+
+                    // shipping State routes Group
+        Route::group(['prefix'=>'state'],function (){
+
+            // shipping District routes
+            Route::get('/', [ShippingAreaController::class, 'StateIndex'])->name('state.all');
+            Route::post('/store', [ShippingAreaController::class, 'StateStore'])->name('state.store');
+            Route::get('/edit/{id}', [ShippingAreaController::class, 'StateEdit'])->name('state.edit');
+            Route::post('/update/{id}', [ShippingAreaController::class, 'StateUpdate'])->name('state.update');
+            Route::get('/delete/{id}', [ShippingAreaController::class, 'StateDelete'])->name('state.delete');
 
             });
 

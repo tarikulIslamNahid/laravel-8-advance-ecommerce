@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use App\Models\district;
 use App\Models\ship_division;
+use App\Models\State;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
@@ -70,6 +71,13 @@ public function DivisionUpdate(Request $request,$id){
 
    }
 
+       // ajax  get District By Division dependencies
+       public function getDistrict($division_id){
+
+        $getDistrict= district::where('division_id',$division_id)->get();
+        return json_encode($getDistrict);
+
+    }
 
 
        //------------------------------------ District Area --------------------------------
@@ -147,5 +155,39 @@ public function DivisionUpdate(Request $request,$id){
         return redirect()->back()->with($notification);
 
        }
+
+
+
+              //------------------------------------ State Area --------------------------------
+              public function StateIndex(){
+                $divisions= ship_division::latest()->get();
+                $districts= district::latest()->get();
+                $states= State::latest()->get();
+                return view('admin.state.index',compact('divisions','districts','states'));
+            }
+
+
+            public function StateStore(Request $request){
+                $request->validate([
+                  'division_id' =>'required',
+                  'district_id' =>'required',
+                  'state_name' =>'required|unique:states|max:255',
+
+                ]);
+
+                $state= new State;
+                $state->division_id= $request->division_id;
+                $state->district_id= $request->district_id;
+                $state->state_name= $request->state_name;
+                $state->created_at= Carbon::now();
+                $state->save();
+                $notification = array(
+                    'message' => 'State Created Successfully',
+                    'alert-type' => 'success'
+                );
+
+                return redirect()->back()->with($notification);
+
+               }
 
 }
