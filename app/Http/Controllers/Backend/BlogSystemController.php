@@ -136,4 +136,20 @@ public function BlogPostStore(Request $request){
     return redirect()->route('blogpost.all')->with($dnotification);
 
 }
+
+public function BlogPostDelete($id){
+    $blog_posts=blog_posts::findOrFail($id);
+  $image=  $blog_posts->post_image;
+    if (file_exists(public_path('storage/post/'.$image))) {
+        unlink(public_path('storage/post/'.$image));
+        }
+        $blog_posts->delete();
+
+        $dnotification=array(
+            'message'=> 'Blog Post Delete Sucessfully',
+            'alert-type'=> 'error',
+        );
+        return redirect()->back()->with($dnotification);
+
+}
 }
