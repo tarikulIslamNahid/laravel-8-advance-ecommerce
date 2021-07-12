@@ -38,4 +38,18 @@ class BlogSystemController extends Controller
           return redirect()->back()->with($notification);
 
     }
+
+        // delete Blog category
+        public function BlogCatDelete($id){
+            $category=blog_category::findOrFail($id);
+
+            $category->delete();
+
+            $dnotification=array(
+                'message'=> 'Blog Category Delete Sucessfully',
+                'alert-type'=> 'error',
+            );
+            return redirect()->back()->with($dnotification);
+
+        }
 }
