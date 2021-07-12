@@ -7,6 +7,7 @@ use App\Models\blog_category;
 use App\Models\blog_posts;
 use Carbon\Carbon;
 use Illuminate\Support\Str;
+use Intervention\Image\ImageManagerStatic as Image;
 use Illuminate\Http\Request;
 
 class BlogSystemController extends Controller
@@ -95,5 +96,44 @@ class BlogSystemController extends Controller
 public function BlogPostCreate(){
     $categories= blog_category::latest()->get();
     return view('admin.blogsystem.post.create',compact('categories'));
+}
+public function BlogPostStore(Request $request){
+     // validate
+     $request->validate([
+        'post_title_en' =>'required|unique:blog_posts|max:255',
+        'post_title_bn' =>'required|unique:blog_posts|max:255',
+        'category_id' =>'required',
+        'post_image' =>'required',
+        'post_details_en' =>'required',
+        'post_details_bn' =>'required',
+    ]);
+
+    $blog_posts= new blog_posts;
+    $blog_posts->category_id=$request->category_id;
+    $blog_posts->post_title_en=$request->post_title_en;
+    $blog_posts->post_slug_en= Str::slug($request->post_title_en) ;
+    $blog_posts->post_title_bn= $request->post_title_bn;
+    $blog_posts->post_slug_bn= strtolower(str_replace(' ', '-',$request->post_title_bn));
+    $blog_posts->post_details_en= $request->post_details_en;
+    $blog_posts->post_details_bn= $request->post_details_bn;
+
+
+    if($request->file('post_image')){
+        $file=$request->file('post_image');
+        $fileName=date('YmdHi').uniqid().'.'.$file->getClientOriginalExtension();
+        Image::make($file)->resize(780,433)->save('storage/post/'.$fileName);
+        $blog_posts['post_image']=$fileName;
+
+
+    }
+
+    $blog_posts->save();
+
+    $dnotification=array(
+        'message'=> 'Blog Post Create Sucessfully',
+        'alert-type'=> 'success',
+    );
+    return redirect()->route('blogpost.all')->with($dnotification);
+
 }
 }
