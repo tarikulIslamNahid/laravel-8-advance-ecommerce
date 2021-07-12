@@ -10,7 +10,7 @@ use App\Http\Controllers\Backend\SubCategoryController;
 use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\Backend\CouponController;
 use App\Http\Controllers\Backend\ShippingAreaController;
-use App\Http\Controllers\Backend\Blog_categoryController;
+use App\Http\Controllers\Backend\BlogSystemController;
 use App\Http\Controllers\Frontend\IndexController;
 
 // frontend home page
@@ -204,23 +204,23 @@ Route::group(['prefix'=>'admin/shipping','middleware'=>['auth:sanctum,admin', 'v
 
 
 // Admin Blog group routes
-// Route::group(['prefix'=>'admin/blog','middleware'=>['auth:sanctum,admin', 'verified']],function (){
+Route::group(['prefix'=>'admin/blog','middleware'=>['auth:sanctum,admin', 'verified']],function (){
 
-//     // Blog categories routes Group
-//     Route::group(['prefix'=>'category'],function (){
+    // Blog categories routes Group
+    Route::group(['prefix'=>'category'],function (){
 
-//     // Blog categories routes
-//     Route::get('/', [Blog_categoryController::class, 'BlogCatIndex'])->name('blogcat.all');
-//     Route::post('/store', [Blog_categoryController::class, 'BlogCatStore'])->name('blogcat.store');
-//     Route::get('/edit/{id}', [Blog_categoryController::class, 'BlogCatEdit'])->name('blogcat.edit');
-//     Route::post('/update/{id}', [Blog_categoryController::class, 'BlogCatUpdate'])->name('blogcat.update');
-//     Route::get('/delete/{id}', [Blog_categoryController::class, 'BlogCatDelete'])->name('blogcat.delete');
+    // Blog categories routes
+    Route::get('/', [BlogSystemController::class, 'BlogCatIndex'])->name('blogcat.all');
+    Route::post('/store', [BlogSystemController::class, 'BlogCatStore'])->name('blogcat.store');
+    Route::get('/edit/{id}', [BlogSystemController::class, 'BlogCatEdit'])->name('blogcat.edit');
+    Route::post('/update/{id}', [BlogSystemController::class, 'BlogCatUpdate'])->name('blogcat.update');
+    Route::get('/delete/{id}', [BlogSystemController::class, 'BlogCatDelete'])->name('blogcat.delete');
 
-//     });
+    });
 
 
 
-// });
+});
 
 
 

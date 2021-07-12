@@ -208,8 +208,8 @@ aria-expanded="{{($route=='category.all') || ($route=='category.create') || ($ro
             <a href="{{route('division.all')}}"> All Posts </a>
         </li> --}}
 
-        <li class="{{($route=='district.all') ? 'active' :''}}">
-            <a href="{{route('district.all')}}"> Categories </a>
+        <li class="{{($route=='blogcat.all') ? 'active' :''}}">
+            <a href="{{route('blogcat.all')}}"> Categories </a>
         </li>
 
     </ul>
