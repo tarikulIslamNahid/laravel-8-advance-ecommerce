@@ -137,6 +137,58 @@ public function BlogPostStore(Request $request){
 
 }
 
+public function BlogPostEdit($id){
+    $post= blog_posts::where('post_slug_en',$id)->first();
+    $categories= blog_category::latest()->get();
+
+    return view('admin.blogsystem.post.edit',compact('post','categories'));
+}
+
+public function BlogPostUpdate(Request $request, $id){
+
+        // validate
+        $request->validate([
+            'post_title_en' =>'required',
+            'post_title_bn' =>'required',
+            'category_id' =>'required',
+            'post_details_en' =>'required',
+            'post_details_bn' =>'required',
+        ]);
+
+        $blog_posts=blog_posts::findOrFail($id);
+        $blog_posts->category_id=$request->category_id;
+        $blog_posts->post_title_en=$request->post_title_en;
+        $blog_posts->post_slug_en= Str::slug($request->post_title_en) ;
+        $blog_posts->post_title_bn= $request->post_title_bn;
+        $blog_posts->post_slug_bn= strtolower(str_replace(' ', '-',$request->post_title_bn));
+        $blog_posts->post_details_en= $request->post_details_en;
+        $blog_posts->post_details_bn= $request->post_details_bn;
+
+        if($request->file('post_image')){
+            $oldImg= $blog_posts->post_image;
+            if (file_exists(public_path('storage/post/'.$oldImg))) {
+             unlink(public_path('storage/post/'.$oldImg));
+             }
+             $file=$request->file('post_image');
+             $fileName=date('YmdHi').uniqid().'.'.$file->getClientOriginalExtension();
+             Image::make($file)->resize(780,433)->save('storage/post/'.$fileName);
+             $blog_posts['post_image']=$fileName;
+
+
+         }
+
+        $blog_posts->update();
+
+        $dnotification=array(
+            'message'=> 'Blog Post Updated Sucessfully',
+            'alert-type'=> 'success',
+        );
+        return redirect()->route('blogpost.all')->with($dnotification);
+
+
+
+}
+
 public function BlogPostDelete($id){
     $blog_posts=blog_posts::findOrFail($id);
   $image=  $blog_posts->post_image;
