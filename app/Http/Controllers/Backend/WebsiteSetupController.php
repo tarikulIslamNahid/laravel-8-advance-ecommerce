@@ -24,8 +24,10 @@ return view('admin.websitesetup.appearance',compact('appearance'));
 
         if($request->file('site_logo')){
             $oldImg= $appearance->site_logo;
+            if($oldImg!=''){
             if (file_exists(public_path('storage/websitesetup/'.$oldImg))) {
              unlink(public_path('storage/websitesetup/'.$oldImg));
+             }
              }
              $file=$request->file('site_logo');
              $fileName=date('YmdHi').uniqid().'.'.$file->getClientOriginalExtension();
@@ -43,7 +45,41 @@ return view('admin.websitesetup.appearance',compact('appearance'));
 
         return redirect()->back()->with($dnotification);
 
+
     }
 
-    
+
+    public function appearanceUpdateMeta(Request $request){
+
+        $appearance= Websitesetup::findOrFail(1);
+        $appearance->meta_title=$request->meta_title;
+        $appearance->meta_desc=$request->meta_desc;
+
+        if($request->file('meta_img')){
+            $oldImg= $appearance->meta_img;
+            if($oldImg!=''){
+                if (file_exists(public_path('storage/websitesetup/'.$oldImg))) {
+                    unlink(public_path('storage/websitesetup/'.$oldImg));
+                    }
+            }
+
+             $file=$request->file('meta_img');
+             $fileName=date('YmdHi').uniqid().'.'.$file->getClientOriginalExtension();
+             Image::make($file)->resize(139,36)->save('storage/websitesetup/'.$fileName);
+             $appearance['meta_img']=$fileName;
+
+
+         }
+         $appearance->update();
+
+         $dnotification=array(
+             'message'=> 'Global Seo Setting Updated Sucessfully',
+             'alert-type'=> 'success',
+         );
+
+        return redirect()->back()->with($dnotification);
+
+    }
+
+
 }

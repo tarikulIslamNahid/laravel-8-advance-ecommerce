@@ -71,14 +71,14 @@
             <div class="form-row mb-4">
                 <div class="col">
                     <label for="exampleFormControlInput1">Meta Title</label>
-                  <input type="text" class="form-control" name="meta_title" placeholder=" ">
+                  <input type="text" class="form-control"  value="{{$appearance->meta_title}}" name="meta_title" placeholder=" ">
                   @error('meta_title')
                       <span class="text-danger"> {{$message}} </span>
                   @enderror
                 </div>
                 <div class="col">
                     <label for="exampleFormControlInput1">Meta description</label>
-                  <input type="text" class="form-control" name="meta_desc" placeholder=" ">
+                  <input type="text" class="form-control"  value="{{$appearance->meta_desc}}" name="meta_desc" placeholder=" ">
                   @error('meta_desc')
                   <span class="text-danger"> {{$message}} </span>
               @enderror
@@ -94,7 +94,7 @@
               @enderror
                 </div>
                 <div class="col">
-                    <img class='mt-4 rounded-circle' id='showMetaImg' src="https://ui-avatars.com/api/?name=Brand Name&color=7F9CF5&background=EBF4FF" width="50px" height="50px" alt="">
+                    <img class='mt-4 rounded-circle' id='showMetaImg' src="{{(!empty($appearance->meta_img)) ? url('storage/websitesetup/'.$appearance->meta_img) : $def}}" width="50px" height="50px" alt="">
 
                 </div>
             </div>
