@@ -11,6 +11,7 @@ use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\Backend\CouponController;
 use App\Http\Controllers\Backend\ShippingAreaController;
 use App\Http\Controllers\Backend\BlogSystemController;
+use App\Http\Controllers\Backend\WebsiteSetupController;
 use App\Http\Controllers\Frontend\IndexController;
 
 // frontend home page
@@ -232,6 +233,14 @@ Route::group(['prefix'=>'admin/blog','middleware'=>['auth:sanctum,admin', 'verif
     });
 
 
+
+});
+
+// Admin Website Setup group routes
+Route::group(['prefix'=>'admin/website','middleware'=>['auth:sanctum,admin', 'verified']],function (){
+    Route::get('/appearance', [WebsiteSetupController::class, 'appearance'])->name('appearance.all');
+    Route::post('/appearance', [WebsiteSetupController::class, 'appearanceUpdateGen'])->name('appearance.updategen');
+    Route::post('/appearance/meta', [WebsiteSetupController::class, 'appearanceUpdateMeta'])->name('appearance.updatemeta');
 
 });
 
