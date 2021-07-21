@@ -13,6 +13,7 @@ use App\Http\Controllers\Backend\ShippingAreaController;
 use App\Http\Controllers\Backend\BlogSystemController;
 use App\Http\Controllers\Backend\WebsiteSetupController;
 use App\Http\Controllers\Frontend\IndexController;
+use App\Http\Controllers\Frontend\LanguageController;
 
 // frontend home page
 Route::get('/',[IndexController::class,'index'])->name('home');
@@ -44,6 +45,16 @@ Route::get('/forgot-password',[IndexController::class,'resetpass'])->name('reset
 Route::middleware(['auth:sanctum,web', 'verified'])->get('/dashboard', function () {
     return view('frontend.panel.dashboard');
 })->name('dashboard');
+
+
+//// Frontend All Routes /////
+/// Multi Language All Routes ////
+
+Route::get('/language/bangla', [LanguageController::class, 'Bangla'])->name('bangla.language');
+
+Route::get('/language/english', [LanguageController::class, 'English'])->name('english.language');
+
+
 
 // admin login routes group
 Route::group(['prefix'=> 'admin', 'middleware'=>['admin:admin']], function(){
